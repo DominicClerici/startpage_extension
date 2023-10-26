@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- css -->
+    <link rel="stylesheet" href="shared/css/colorSchemes.css" />
+    <link rel="stylesheet" href="home/css/variables.css" />
+    <link rel="stylesheet" href="home/css/newUser.css" />
+    <link rel="stylesheet" href="home/css/pageLayout.css" />
+    <link rel="stylesheet" href="home/css/reminder.css" />
+    <link rel="stylesheet" href="home/css/global.css" />
+    <link rel="stylesheet" href="home/css/shortcutList.css" />
+    <link rel="stylesheet" href="home/css/header.css" />
+    <link rel="stylesheet" href="home/css/miscStyles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- js -->
+    <script src="shared/js/historyPermission.js"></script>
+    <script src="shared/js/getColorScheme.js"></script>
+    <script src="shared/js/clearChildren.js"></script>
+    <script src="shared/js/saveSetting.js"></script>
+    <script src="shared/js/location.js"></script>
+    <script src="shared/js/generateUUID.js"></script>
+
+    <script src="home/js/greetings.js"></script>
+    <script src="home/js/newUser.js"></script>
+    <script src="home/js/userShortcuts.js"></script>
+    <script src="home/js/goToSettings.js"></script>
+    <script src="home/js/weather.js"></script>
+    <script src="home/js/routine.js"></script>
+    <script src="home/js/getFavicon.js"></script>
+    <script src="home/js/reminders.js"></script>
+
+    <!-- fonts -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" /> -->
+
+    <title>Document</title>
+  </head>
+  <!-- layout styles in pageLayout.css -->
+  <body>
+    <!-- button styles in miscStyles.css -->
+    <button id="goToSettings">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100" height="100">
+        <path
+          d="M10.49 2a.998.998 0 0 0-.98.809l-.334 1.714c-.821.31-1.58.744-2.246 1.291l-1.645-.566a1 1 0 0 0-1.191.445L2.586 8.307c-.24.415-.152.941.209 1.255l1.318 1.147C4.045 11.13 4 11.559 4 12c0 .44.045.87.113 1.291l-1.318 1.146c-.361.314-.448.841-.21 1.256l1.509 2.614a1 1 0 0 0 1.191.447l1.645-.567a7.984 7.984 0 0 0 2.246 1.29l.334 1.714c.092.47.501.809.98.809h3.02a.998.998 0 0 0 .98-.809l.334-1.714c.821-.31 1.58-.744 2.246-1.291l1.645.566a1 1 0 0 0 1.191-.445l1.508-2.616a1 1 0 0 0-.209-1.254l-1.318-1.146c.068-.421.113-.85.113-1.291 0-.44-.045-.87-.113-1.291l1.318-1.147c.361-.314.448-.84.21-1.255l-1.509-2.614a1 1 0 0 0-1.191-.447l-1.645.566a7.984 7.984 0 0 0-2.246-1.289L14.49 2.81A.998.998 0 0 0 13.51 2zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"
+          transform="matrix(12.8 0 0 12.8 -25.6 -25.6)"
+          stroke-miterlimit="10"
+          font-family="none"
+          font-weight="none"
+          font-size="none"
+          text-anchor="none"
+          style="mix-blend-mode: normal"
+        />
+      </svg>
+    </button>
+
+    <!-- header styles in header.css -->
+    <header>
+      <h1 id="greeting"></h1>
+
+      <nav>
+        <ul id="routine"></ul>
+        <!-- ! this is where your shortcuts are gonna go for most used -->
+      </nav>
+
+      <figure id="weatherInfo">
+        <span>
+          <img id="weatherIcon" />
+          <h3 id="temp"></h3>
+        </span>
+        <figcaption>
+          <p id="weatherDesc"></p>
+        </figcaption>
+      </figure>
+    </header>
+
+    <main>
+      <!-- list styles in shortcutList.css -->
+      <section class="remindersContainer">
+        <span class="listHeading">
+          <span>
+            <h3>Reminders</h3>
+            <button id="changeReminderViewButton">
+              <svg
+                id="calendarView"
+                class=""
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill="currentColor"
+                  d="M6 1a1 1 0 0 0-2 0h2ZM4 4a1 1 0 0 0 2 0H4Zm7-3a1 1 0 1 0-2 0h2ZM9 4a1 1 0 1 0 2 0H9Zm7-3a1 1 0 1 0-2 0h2Zm-2 3a1 1 0 1 0 2 0h-2ZM1 6a1 1 0 0 0 0 2V6Zm18 2a1 1 0 1 0 0-2v2ZM5 11v-1H4v1h1Zm0 .01H4v1h1v-1Zm.01 0v1h1v-1h-1Zm0-.01h1v-1h-1v1ZM10 11v-1H9v1h1Zm0 .01H9v1h1v-1Zm.01 0v1h1v-1h-1Zm0-.01h1v-1h-1v1ZM10 15v-1H9v1h1Zm0 .01H9v1h1v-1Zm.01 0v1h1v-1h-1Zm0-.01h1v-1h-1v1ZM15 15v-1h-1v1h1Zm0 .01h-1v1h1v-1Zm.01 0v1h1v-1h-1Zm0-.01h1v-1h-1v1ZM15 11v-1h-1v1h1Zm0 .01h-1v1h1v-1Zm.01 0v1h1v-1h-1Zm0-.01h1v-1h-1v1ZM5 15v-1H4v1h1Zm0 .01H4v1h1v-1Zm.01 0v1h1v-1h-1Zm0-.01h1v-1h-1v1ZM2 4h16V2H2v2Zm16 0h2a2 2 0 0 0-2-2v2Zm0 0v14h2V4h-2Zm0 14v2a2 2 0 0 0 2-2h-2Zm0 0H2v2h16v-2ZM2 18H0a2 2 0 0 0 2 2v-2Zm0 0V4H0v14h2ZM2 4V2a2 2 0 0 0-2 2h2Zm2-3v3h2V1H4Zm5 0v3h2V1H9Zm5 0v3h2V1h-2ZM1 8h18V6H1v2Zm3 3v.01h2V11H4Zm1 1.01h.01v-2H5v2Zm1.01-1V11h-2v.01h2Zm-1-1.01H5v2h.01v-2ZM9 11v.01h2V11H9Zm1 1.01h.01v-2H10v2Zm1.01-1V11h-2v.01h2Zm-1-1.01H10v2h.01v-2ZM9 15v.01h2V15H9Zm1 1.01h.01v-2H10v2Zm1.01-1V15h-2v.01h2Zm-1-1.01H10v2h.01v-2ZM14 15v.01h2V15h-2Zm1 1.01h.01v-2H15v2Zm1.01-1V15h-2v.01h2Zm-1-1.01H15v2h.01v-2ZM14 11v.01h2V11h-2Zm1 1.01h.01v-2H15v2Zm1.01-1V11h-2v.01h2Zm-1-1.01H15v2h.01v-2ZM4 15v.01h2V15H4Zm1 1.01h.01v-2H5v2Zm1.01-1V15h-2v.01h2Zm-1-1.01H5v2h.01v-2Z"
+                />
+              </svg>
+              <svg
+                id="fromNowView"
+                class=""
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </span>
+
+          <button class="secondButton" id="createNewReminder">Create</button>
+        </span>
+        <div class="pageListContainer reminderListCont betterScrollBar">
+          <ul id="reminderList"></ul>
+        </div>
+      </section>
+      <section class="customLinksCont">
+        <nav class="customShortcutsTabNav">
+          <ul id="userShortcutTabs">
+            <!-- content inserted here by userShortcuts.js -->
+          </ul>
+        </nav>
+        <div class="pageListContainer" id="customLinkGroupContainer">
+          <!-- content inserted here by userShortcuts.js -->
+        </div>
+      </section>
+    </main>
+    <!-- scripts to run after DOM loads -->
+    <script src="home/js/addEventListners.js"></script>
+    <script src="home/js/initScripts.js"></script>
+  </body>
+</html>

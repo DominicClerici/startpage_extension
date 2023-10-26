@@ -1,0 +1,457 @@
+.remindersContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.reminderListCont {
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: scroll;
+}
+#reminderList {
+  padding: 0;
+  margin: 0;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#reminderList.hideContent {
+  & .reminderItem {
+    position: absolute;
+    transition: opacity 0s;
+    opacity: 0;
+  }
+}
+#reminderList.fromNow {
+  & .dueAtDate {
+    transition: opacity 0.1s;
+    opacity: 0;
+  }
+  & .dueAtFromNow {
+    transition: opacity 0.3s;
+    opacity: 1;
+  }
+}
+#reminderList.date {
+  & .dueAtDate {
+    transition: opacity 0.3s;
+    opacity: 1;
+  }
+  & .dueAtFromNow {
+    transition: opacity 0.1s;
+    opacity: 0;
+  }
+}
+#fromNowView {
+  & path {
+    transition: stroke 0.1s !important;
+    stroke: var(--text-color-accent);
+    fill: transparent !important;
+  }
+  &:hover {
+    & path {
+      stroke: var(--text-color-main);
+    }
+  }
+}
+.listHeading {
+  flex: 0 1 auto;
+  width: 100%;
+  border-bottom: 2px var(--accent-color) solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & span {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  & button:not(#createNewReminder) {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    & path {
+      transition: fill 0.1s;
+      fill: var(--text-color-accent);
+    }
+    &:hover path {
+      fill: var(--text-color-main);
+    }
+    & svg {
+      transition: opacity 0.15s;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2.5rem;
+      &.visible {
+        opacity: 1;
+      }
+    }
+  }
+  & h3 {
+    margin: 0 0;
+    padding-left: 1rem;
+    color: var(--text-color-main);
+    font-size: var(--font-size-medlarge);
+  }
+}
+#createNewReminder {
+  line-height: 1;
+  margin-right: 1rem;
+  padding: 0.3em 1em;
+  font-size: var(--font-size-sm);
+}
+/* #createNewReminder {
+  padding-inline: 1em;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  color: var(--text-color-secondary);
+  font-size: var(--font-size-med);
+  font-family: "poppins", sans-serif;
+  font-weight: 500;
+  transition: color 0.1s, background-color 0.1s;
+}
+@media (max-width: 1299px) and (min-width: 1024px) {
+  #createNewReminder {
+    padding-inline: 0.5em;
+  }
+}
+#createNewReminder:hover {
+  cursor: pointer;
+  background-color: var(--accent-color);
+  color: var(--text-color-main);
+} */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.newEventCont {
+  animation: fadeIn 0.5s backwards;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  & form {
+    width: 100%;
+    appearance: none;
+  }
+  & h2 {
+    padding-left: 0.5rem;
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-color-main);
+  }
+  & label {
+    padding-left: 0.75rem;
+    margin: 0;
+    font-size: var(--font-size-s);
+    color: var(--text-color-secondary);
+    transition: color 0.15s, transform 0.15s;
+  }
+  & textarea,
+  input:not([type="checkbox"]) {
+    padding: calc(0.75rem - 2px);
+    border: none;
+    outline: none;
+    color: var(--text-color-secondary);
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--accent-color);
+    width: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  & textarea {
+    resize: vertical;
+    font-size: var(--font-size-s);
+    font-family: "inter", sans-serif;
+    max-height: calc(8.4em + 1.5rem - 2px);
+  }
+  & input[type="text"] {
+    font-family: "poppins", sans-serif;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+  & input[type="submit"] {
+    margin-top: 1rem;
+    background-color: var(--color-highlight);
+    width: 100%;
+    font-size: var(--font-size-sm);
+    border: none;
+    outline: none;
+    color: var(--text-color-secondary);
+    border-radius: 4px;
+    padding-block: 1rem;
+    font-family: "poppins", sans-serif;
+    font-weight: 500;
+    box-shadow: 0px 0px 0px 0px var(--accent-color);
+    transition: transform 0.1s, box-shadow 0.1s, color 0.1s;
+    cursor: pointer;
+  }
+  & input[type="submit"]:hover {
+    color: var(--text-color-main);
+    transform: translateY(-3px);
+    box-shadow: 0px 3px 0px 0px var(--accent-color);
+  }
+  & input[type="submit"]:active {
+    transform: translateY(-1px);
+    box-shadow: 0px 1px 0px 0px var(--accent-color);
+  }
+}
+.focusCont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.focusCont:has(.inputGroup:focus-within) {
+  & .inputGroup:focus-within {
+    & label {
+      color: var(--text-color-main);
+    }
+    & .inp {
+      color: var(--text-color-main);
+      border-color: var(--color-highlight);
+    }
+  }
+  & .inputGroup:not(:focus-within) {
+    opacity: 0.5;
+  }
+}
+.inputGroup {
+  transition: opacity 0.15s;
+}
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  & .inputGroup {
+    flex-grow: 1;
+  }
+  & input {
+    font-size: var(--font-size-xs);
+    color-scheme: var(--icon-color-scheme);
+    cursor: text;
+  }
+  & input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    height: 1em;
+    width: 1em;
+  }
+}
+.timeSelectionToggle {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  padding-left: 0.75rem;
+  & label {
+    padding: 0;
+  }
+}
+.timeSelectionToggle:has(input:checked) {
+  & #dateMode {
+    color: var(--text-color-accent);
+  }
+  & #timeMode {
+    transform: translateX(-1.5rem);
+    color: var(--text-color-main);
+  }
+}
+.timeSelectionToggle:has(input:not(:checked)) {
+  & #dateMode {
+    color: var(--text-color-main);
+    transform: translateX(1.5rem);
+  }
+  & #timeMode {
+    color: var(--text-color-accent);
+  }
+}
+input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  width: 6rem;
+  height: 3rem;
+  background-color: var(--accent-color);
+  border-width: 2px;
+  border-style: solid;
+  box-sizing: content-box;
+  border-color: var(--text-color-secondary);
+  border-radius: 30px;
+  transition: background-color 0.3s;
+}
+input[type="checkbox"]::after {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  content: "";
+  height: calc(3rem - 4px);
+  width: calc(3rem - 4px);
+  border-radius: 4rem;
+  background-color: white;
+  transition: left 0.3s;
+}
+input[type="checkbox"]:checked {
+  background-color: var(--active);
+}
+input[type="checkbox"]:checked::after {
+  left: calc(50% + 2px);
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  font-size: var(--font-size-xs);
+  font-family: "inter", sans-serif;
+}
+#replaceContent {
+  position: relative;
+  & .canBeHidden {
+    transition: opacity 0.15s, transform 0.25s;
+    pointer-events: none;
+    opacity: 0;
+    &:first-of-type {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+    }
+    &:last-of-type {
+      transform: translateY(100%);
+    }
+    &.visible {
+      pointer-events: all;
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+.reminderItem.added {
+  animation: slideIn 0.5s;
+}
+.reminderItem {
+  position: relative;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  justify-content: space-between;
+  gap: 3rem;
+  display: flex;
+  border-bottom: 1px solid var(--accent-color);
+  transition: opacity 0.5s, transform 0.5s;
+  & h6 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-weight: 600;
+    margin: 0;
+    font-size: var(--font-size-med);
+    color: var(--text-color-main);
+  }
+  & .reminderDescription {
+    margin: 0;
+    margin-top: 1rem;
+    font-size: var(--font-size-s);
+    color: var(--text-color-secondary);
+  }
+  & .dueAtFromNow,
+  .dueAtDate {
+    margin: 0;
+    font-weight: 600;
+    margin-top: -0.5rem;
+    font-size: var(--font-size-xs);
+    color: var(--text-color-secondary);
+  }
+  & .dueAtDate {
+    margin-top: -2.5rem;
+    position: absolute;
+  }
+
+  & button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    & svg {
+      width: 3rem;
+      height: 3rem;
+      & rect {
+        transition: fill 0.15s;
+        fill: var(--text-color-accent);
+      }
+    }
+    &:hover rect {
+      fill: var(--text-color-main);
+    }
+  }
+}
+.reminderItem.closing {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+#noReminderText {
+  text-align: center;
+  font-size: var(--font-size-large);
+  color: var(--text-color-secondary);
+}
+
+@keyframes svgAnim {
+  0% {
+    stroke-dashoffset: -60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.svgDoneReminder {
+  width: 5rem;
+  height: 5rem;
+  margin-inline: auto;
+  & path {
+    animation: svgAnim 1s ease-out;
+    transition: stroke-dashoffset 0.5s;
+    stroke-dasharray: 60;
+    stroke: var(--text-color-secondary);
+  }
+}
+.noReminderCont {
+  margin-top: 4rem;
+  animation: fadeIn 0.5s;
+  & h1 {
+    font-weight: 500;
+    animation: fadeIn 1.5s 0.8s backwards;
+  }
+}

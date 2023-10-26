@@ -1,0 +1,59 @@
+/* ? font size queries */
+@media (min-width: 1300px) {
+  :root {
+    --font-size-xlarge: clamp(4.4rem, 1.8rem + 2vw, 5rem);
+    --font-size-large: clamp(3rem, 0.833rem + 1.667vw, 3.5rem);
+    --font-size-medlarge: clamp(2.6rem, 0.867rem + 1.333vw, 3rem);
+    --font-size-med: clamp(2.1rem, 0.8rem + 1vw, 2.4rem);
+    --font-size-sm: clamp(1.8rem, 0.933rem + 0.667vw, 2rem);
+    --font-size-s: clamp(1.6rem, 0.733rem + 0.667vw, 1.8rem);
+    --font-size-xs: clamp(1.5rem, 1.067rem + 0.333vw, 1.6rem);
+  }
+}
+@media (max-width: 1299px) and (min-width: 1024px) {
+  :root {
+    --font-size-xlarge: clamp(4rem, 2.511rem + 1.455vw, 4.4rem);
+    --font-size-large: clamp(2.9rem, 1.783rem + 1.091vw, 3.2rem);
+    --font-size-medlarge: clamp(2.5rem, 1.383rem + 1.091vw, 2.8rem);
+    --font-size-med: clamp(2rem, 1.255rem + 0.727vw, 2.2rem);
+    --font-size-sm: clamp(1.8rem, 1.428rem + 0.364vw, 1.9rem);
+    --font-size-s: clamp(1.6rem, 1.228rem + 0.364vw, 1.7rem);
+    --font-size-xs: clamp(1.6rem, 1.228rem + 0.364vw, 1.7rem);
+  }
+}
+@media (max-width: 1023px) and (min-width: 768px) {
+  :root {
+    --font-size-xlarge: clamp(3.3rem, 1.192rem + 2.745vw, 4rem);
+    --font-size-large: clamp(2.6rem, 1.696rem + 1.176vw, 2.9rem);
+    --font-size-medlarge: clamp(2.4rem, 1.798rem + 0.784vw, 2.6rem);
+    --font-size-med: clamp(2rem, 1.096rem + 1.176vw, 2.3rem);
+    --font-size-sm: clamp(1.8rem, 1.198rem + 0.784vw, 2rem);
+    --font-size-s: clamp(1.6rem, 0.998rem + 0.784vw, 1.8rem);
+    --font-size-xs: clamp(1.6rem, 0.998rem + 0.784vw, 1.8rem);
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --font-size-xlarge: 2.5rem;
+    --font-size-large: 2.2rem;
+    --font-size-medlarge: 2rem;
+    --font-size-med: 1.9rem;
+    --font-size-sm: 1.6rem;
+    --font-size-s: 1.6rem;
+    --font-size-xs: 1.6rem;
+  }
+}
+
+:root {
+  --transition-s: 0.05s;
+  --transition-sm: 0.1s;
+  --transition-m: 0.15s;
+  --transition-ml: 0.25s;
+  --transition-l: 0.4s;
+  --transition-xl: 0.6s;
+  --transition-xxl: 1s;
+
+  --delay-short: 0.08s;
+  --delay-med: 0.15s;
+  --delay-long: 0.28s;
+}

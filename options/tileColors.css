@@ -1,0 +1,271 @@
+#monoDark {
+  & .background {
+    fill: #1d1d1d;
+  }
+  & .main {
+    fill: #f1f1f1;
+  }
+  & .secondary {
+    fill: #d8d8d8;
+  }
+  & .highlight {
+    fill: #797979;
+  }
+  & .accent {
+    fill: #474747;
+  }
+}
+#amethyst {
+  & .background {
+    fill: #1e1b1f;
+  }
+  & .main {
+    fill: #fef4ff;
+  }
+  & .secondary {
+    fill: #e5cce9;
+  }
+  & .highlight {
+    fill: #9f01b4;
+  }
+  & .accent {
+    fill: #4a344d;
+  }
+}
+#emerald {
+  & .background {
+    fill: #1f2120;
+  }
+  & .main {
+    fill: #f6fffa;
+  }
+  & .secondary {
+    fill: #b0d8c1;
+  }
+  & .highlight {
+    fill: #01b450;
+  }
+  & .accent {
+    fill: #355047;
+  }
+}
+#midnightBlue {
+  & .background {
+    fill: #181b22;
+  }
+  & .main {
+    fill: #c4cbdd;
+  }
+  & .secondary {
+    fill: #a8b5d6;
+  }
+  & .highlight {
+    fill: #4362c9;
+  }
+  & .accent {
+    fill: #566486;
+  }
+}
+#concrete {
+  & .background {
+    fill: #2c2b2c;
+  }
+  & .main {
+    fill: #fbfafb;
+  }
+  & .secondary {
+    fill: #b6b6b6;
+  }
+  & .highlight {
+    fill: #445eed;
+  }
+  & .accent {
+    fill: #424142;
+  }
+}
+#cloud {
+  & .background {
+    fill: #f8f9fa;
+  }
+  & .main {
+    fill: #212529;
+  }
+  & .secondary {
+    fill: #343a40;
+  }
+  & .highlight {
+    fill: #5791ca;
+  }
+  & .accent {
+    fill: #a4aab1;
+  }
+}
+#ice {
+  & .background {
+    fill: #cdddec;
+  }
+  & .main {
+    fill: #22282e;
+  }
+  & .secondary {
+    fill: #404952;
+  }
+  & .highlight {
+    fill: #3d82c7;
+  }
+  & .accent {
+    fill: #abb4be;
+  }
+}
+#rosewater {
+  & .background {
+    fill: #faf8fa;
+  }
+  & .main {
+    fill: #292129;
+  }
+  & .secondary {
+    fill: #40343f;
+  }
+  & .highlight {
+    fill: #ca57bb;
+  }
+  & .accent {
+    fill: #b1a4b1;
+  }
+}
+#spring {
+  & .background {
+    fill: #f8faf8;
+  }
+  & .main {
+    fill: #212923;
+  }
+  & .secondary {
+    fill: #344038;
+  }
+  & .highlight {
+    fill: #57ca74;
+  }
+  & .accent {
+    fill: #a4b1a4;
+  }
+}
+#monoLight {
+  & .background {
+    fill: #ebebeb;
+  }
+  & .main {
+    fill: #202020;
+  }
+  & .secondary {
+    fill: #444444;
+  }
+  & .highlight {
+    fill: #868686;
+  }
+  & .accent {
+    fill: #a3a3a3;
+  }
+}
+body {
+  &.monoDark {
+    --background-color: #1d1d1d;
+    --accent-color: #474747;
+    --text-color-main: #f1f1f1;
+    --text-color-secondary: #d8d8d8;
+    --text-color-accent: #adadad;
+    --color-highlight: #797979;
+    --icon-color-scheme: dark;
+  }
+  &.amethyst {
+    --background-color: #1e1b1f;
+    --accent-color: #4a344d;
+    --text-color-main: #fef4ff;
+    --text-color-secondary: #e5cce9;
+    --text-color-accent: #bd99c2;
+    --color-highlight: #9f01b4;
+    --icon-color-scheme: dark;
+  }
+  &.emerald {
+    --background-color: #1f2120;
+    --accent-color: #355047;
+    --text-color-main: #f6fffa;
+    --text-color-secondary: #b0d8c1;
+    --text-color-accent: #8fb6a0;
+    --color-highlight: #01b450;
+    --icon-color-scheme: dark;
+  }
+  &.midnightBlue {
+    --background-color: #181b22;
+    --accent-color: #566486;
+    --text-color-main: #c4cbdd;
+    --text-color-secondary: #a8b5d6;
+    --text-color-accent: #7d8bb1;
+    --color-highlight: #4362c9;
+    --icon-color-scheme: dark;
+  }
+  &.concrete {
+    --background-color: #2c2b2c;
+    --accent-color: #424142;
+    --text-color-main: #fbfafb;
+    --text-color-secondary: #b6b6b6;
+    --text-color-accent: #7e7c7e;
+    --color-highlight: #445eed;
+    --icon-color-scheme: dark;
+  }
+  &.ice {
+    --background-color: #cdddec;
+    --accent-color: #abb4be;
+    --text-color-main: #22282e;
+    --text-color-secondary: #404952;
+    --text-color-accent: #505f6d;
+    --color-highlight: #3d82c7;
+    --icon-color-scheme: light;
+  }
+  &.cloud {
+    --background-color: #f8f9fa;
+    --accent-color: #a4aab1;
+    --text-color-main: #212529;
+    --text-color-secondary: #343a40;
+    --text-color-accent: #434b53;
+    --color-highlight: #5791ca;
+    --icon-color-scheme: light;
+  }
+  &.rosewater {
+    --background-color: #faf8fa;
+    --accent-color: #b1a4b1;
+    --text-color-main: #292129;
+    --text-color-secondary: #40343f;
+    --text-color-accent: #534351;
+    --color-highlight: #ca57bb;
+    --icon-color-scheme: light;
+  }
+  &.spring {
+    --background-color: #f8faf8;
+    --accent-color: #a4b1a4;
+    --text-color-main: #212923;
+    --text-color-secondary: #344038;
+    --text-color-accent: #435343;
+    --color-highlight: #57ca74;
+    --icon-color-scheme: light;
+  }
+  &.monoLight {
+    --background-color: #ebebeb;
+    --accent-color: #a3a3a3;
+    --text-color-main: #202020;
+    --text-color-secondary: #444444;
+    --text-color-accent: #505050;
+    --color-highlight: #868686;
+    --icon-color-scheme: light;
+  }
+}
+body.highContrast {
+  --background-color: #141414;
+  --accent-color: #7c7c7c;
+  --text-color-main: #ffffff;
+  --text-color-secondary: #e6e6e6;
+  --text-color-accent: #cecece;
+  --color-highlight: #ff0000;
+  --icon-color-scheme: dark;
+}

@@ -1,0 +1,191 @@
+.shortcutList {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+  & li {
+    cursor: pointer;
+    padding-inline-start: 1rem;
+    padding-block: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  & a {
+    text-decoration: none;
+  }
+  & img {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+  & p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-color-main);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    &::after {
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--text-color-main);
+      transition: transform var(--transition-sm);
+    }
+  }
+  & li:hover p {
+    color: white;
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+.customLinksCont {
+  display: flex;
+  flex-direction: column;
+}
+.customShortcutsTabNav {
+  flex: 0 1 auto;
+  & ul {
+    border-bottom: 2px var(--accent-color) solid;
+    margin: 0;
+    padding: 0;
+    padding-left: 1rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  & li {
+    cursor: pointer;
+    color: var(--text-color-main);
+    font-size: var(--font-size-sm);
+    position: relative;
+    transition: color var(--transition-sm);
+    flex: 0 1 1;
+    max-width: 25%;
+  }
+  & h3 {
+    font-size: var(--font-size-medlarge);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  & li.active {
+    color: var(--color-highlight);
+  }
+  & li::after {
+    content: "";
+    transform: scaleX(0);
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-highlight);
+    transition: transform var(--transition-m);
+  }
+  & li.active::after {
+    transform: scaleX(1);
+  }
+}
+#customLinkGroupContainer {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+.userShortcutList {
+  overflow-y: scroll;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 0.125fr;
+  opacity: 0;
+  transition: transform var(--transition-l), opacity var(--transition-m);
+  pointer-events: none;
+  transform: translateY(-100%);
+  &.empty {
+    margin-top: 4rem;
+    display: inline-block;
+  }
+}
+@media (max-width: 1023px) {
+  .userShortcutList {
+    grid-template-columns: 1fr;
+  }
+}
+
+.userShortcutList.active {
+  transition: transform var(--transition-l), opacity var(--transition-m) var(--delay-short);
+  pointer-events: all;
+  transform: translateY(0);
+  opacity: 1;
+}
+#requestPermission {
+  font-size: var(--font-size-medlarge);
+  font-weight: 500;
+  background-color: var(--accent-color);
+  color: var(--text-color-secondary);
+  outline: none;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0px 0px 0px 0px var(--text-color-secondary);
+}
+#requestPermission:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 3px 0px 0px var(--text-color-secondary);
+}
+#requestPermission:active {
+  transform: translateY(-1px);
+  box-shadow: 0px 1px 0px 0px var(--text-color-secondary);
+}
+.historyApproval {
+  text-align: center;
+  & h4 {
+    margin: 2rem 0;
+    color: var(--text-color-main);
+    font-size: var(--font-size-medlarge);
+  }
+  & p {
+    margin: 2rem 0;
+  }
+}
+.noShortcutsInNav {
+  font-weight: 500;
+  color: var(--text-color-main);
+  font-size: var(--font-size-medlarge);
+  margin: 0;
+}
+.noShortcutsWindowCont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  & p {
+    margin-bottom: 0;
+    color: var(--text-color-main);
+    font-size: var(--font-size-large);
+  }
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start.js Settings</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="options/global.css" />
+    <link rel="stylesheet" href="options/stylesheet.css" />
+    <link rel="stylesheet" href="options/shortcuts.css" />
+    <link rel="stylesheet" href="options/tileColors.css" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+
+    <!-- js -->
+    <script src="shared/js/getColorScheme.js"></script>
+    <script src="shared/js/clearChildren.js"></script>
+    <script src="shared/js/saveSetting.js"></script>
+    <script src="shared/js/location.js"></script>
+    <script src="shared/js/historyPermission.js"></script>
+    <script src="shared/js/generateUUID.js"></script>
+
+    <script src="options/js/initializeEventListeners.js"></script>
+    <script src="options/js/initializeSettings.js"></script>
+    <script src="options/js/utils.js"></script>
+    <script src="options/js/shortcutSaveFunc.js"></script>
+    <script src="options/js/shortcuts.js"></script>
+  </head>
+  <body>
+    <div id="popupArea"></div>
+    <h1>Settings</h1>
+    <button class="secondButton" id="goBack">Save and exit.</button>
+    <p>Quickly navigate to:</p>
+    <ul class="quickLinks">
+      <li>
+        <a href="#generalSection">General</a>
+      </li>
+      <li>
+        <a href="#appearanceSection">Appearance</a>
+      </li>
+      <li>
+        <a href="#shortcutSection">Shortcuts</a>
+      </li>
+    </ul>
+    <section>
+      <h2 id="generalSection">General</h2>
+      <hr />
+
+      <div class="textRow">
+        <p class="slightIndent">Nickname</p>
+        <input id="nickname" type="text" />
+      </div>
+
+      <div class="optionRow">
+        <span>
+          <span class="centerAlign">
+            <p>Dynamic recommendations</p>
+          </span>
+          <p class="subtitle">Requires history permission</p>
+        </span>
+        <input id="historyPerm" type="checkbox" />
+      </div>
+
+      <div class="textRow">
+        <p class="slightIndent">Location</p>
+        <span class="alignCenter">
+          <input id="location" type="text" />
+          <span id="useGeolocation" class="alignCenter">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 122.88 122.88"
+              style="enable-background: new 0 0 122.88 122.88"
+              xml:space="preserve"
+            >
+              <path
+                d="M68.23 13.49c10.44 1.49 19.79 6.36 26.91 13.48 7.29 7.29 12.23 16.93 13.58 27.68h14.17v13.58H108.5a47.51 47.51 0 0 1-13.36 26.13c-7.11 7.11-16.47 11.99-26.91 13.48v15.04H54.65v-15.04c-10.44-1.49-19.79-6.36-26.9-13.48-6.94-6.94-11.74-16-13.36-26.13H0V54.65h14.16c1.35-10.75 6.29-20.39 13.58-27.68 7.11-7.11 16.46-11.99 26.9-13.48V0h13.58v13.49h.01zm-6.79 21.92c13.95 0 25.25 11.31 25.25 25.25 0 13.95-11.31 25.25-25.25 25.25-13.95 0-25.25-11.31-25.25-25.25s11.3-25.25 25.25-25.25zM89 33.11c-7.05-7.05-16.8-11.42-27.56-11.42-10.76 0-20.51 4.36-27.56 11.42-7.05 7.05-11.42 16.8-11.42 27.56 0 10.76 4.36 20.51 11.42 27.56 7.05 7.05 16.8 11.42 27.56 11.42 10.76 0 20.51-4.36 27.56-11.42 7.05-7.05 11.42-16.8 11.42-27.56-.01-10.77-4.37-20.51-11.42-27.56z"
+              />
+            </svg>
+            <p class="subtitle">Use GPS</p>
+          </span>
+        </span>
+        <p class="subtitle">Used for weather forecast.</p>
+        <ul id="locationResults"></ul>
+      </div>
+
+      <div class="optionRow">
+        <span>
+          <p>Display temperature in Fahrenheit</p>
+        </span>
+        <input id="fahrenheit" type="checkbox" />
+      </div>
+    </section>
+
+    <section>
+      <h2 id="appearanceSection">Appearance</h2>
+      <hr />
+
+      <div class="optionRow">
+        <span>
+          <p>Auto dark mode</p>
+          <p class="subtitle">Uses device dark mode setting.</p>
+        </span>
+        <input id="autoDarkMode" type="checkbox" />
+      </div>
+
+      <div class="optionRow">
+        <span>
+          <p>Dark mode</p>
+          <p class="subtitle">No effect if auto dark mode is enabled.</p>
+        </span>
+        <input id="darkMode" type="checkbox" />
+      </div>
+
+      <!-- monstrosity of svg in here -->
+      <p>Dark mode color scheme</p>
+      <p class="subtitle">Current: <span id="currentDarkScheme">Midnight Blue</span></p>
+      <div class="tileRow">
+        <div class="colorSchemeTile" colorMode="dark" id="midnightBlue">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Midnight Blue</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="dark" id="concrete">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Concrete</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="dark" id="amethyst">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Amethyst</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="dark" id="emerald">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Emerald</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="dark" id="monoDark">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Mono Dark</p>
+        </div>
+      </div>
+
+      <p>Light mode color scheme</p>
+      <p class="subtitle">Current: <span id="currentLightScheme">Cloud</span></p>
+      <div class="tileRow">
+        <div class="colorSchemeTile" colorMode="light" id="ice">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Ice</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="light" id="cloud">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Cloud</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="light" id="rosewater">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Rosewater</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="light" id="spring">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Spring</p>
+        </div>
+        <div class="colorSchemeTile" colorMode="light" id="monoLight">
+          <div class="svgContainer">
+            <svg width="300" height="150" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="background" width="300" height="150" fill="#1D1D1F" />
+              <rect class="main" x="25" y="19" width="100" height="20" rx="10" fill="#FBFBFD" />
+              <rect class="highlight" x="255" y="19" width="20" height="20" rx="10" fill="#0066CC" />
+              <rect class="main" x="25" y="61" width="74" height="10" rx="5" fill="#FBFBFD" />
+              <rect class="secondary" x="25" y="78" width="46" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="93" width="64" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="108" width="55" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="secondary" x="25" y="123" width="57" height="8" rx="4" fill="#D0D0D0" />
+              <rect class="accent" x="138" y="78" width="137" height="53" rx="6" fill="#444444" />
+              <rect class="accent" x="171" y="61" width="104" height="10" rx="5" fill="#444444" />
+              <rect class="highlight" x="138" y="61" width="28" height="10" rx="5" fill="#0066CC" />
+              <rect class="main" x="142" y="82" width="75" height="5" rx="2.5" fill="#FBFBFD" />
+              <rect class="secondary" x="142" y="94" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+              <rect class="secondary" x="142" y="106" width="59" height="5" rx="2.5" fill="#D0D0D0" />
+            </svg>
+          </div>
+          <p class="subtitle">Mono Light</p>
+        </div>
+      </div>
+      <div class="optionRow">
+        <span>
+          <p>High contrast</p>
+          <p class="subtitle">For vision impaired users. Overrides color settings.</p>
+        </span>
+        <input id="highContrast" type="checkbox" />
+      </div>
+    </section>
+
+    <section>
+      <h2 id="shortcutSection">Shortcuts</h2>
+      <hr />
+      <ul id="shortcutList"></ul>
+    </section>
+    <section>
+      <hr />
+      <button class="secondButton" id="resetButton">Reset all data</button>
+    </section>
+
+    <!-- Script for when DOM loads -->
+    <script src="options/js/onLoadFunc.js"></script>
+  </body>
+</html>
+
+<!-- 
+  This will have options for:
+  color scheme -> slider for custom colors
+  
+
+ -->

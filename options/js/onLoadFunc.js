@@ -1,0 +1,6 @@
+// initColorScheme()
+initializeSettings()
+
+initializeEventListeners()
+
+createShortcutMenu()

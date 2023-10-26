@@ -1,0 +1,37 @@
+#goToSettings {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--accent-color);
+  outline: none;
+  border: none;
+  padding: 1rem;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  & svg {
+    transition: transform var(--transition-sm);
+    height: 3rem;
+    width: 3rem;
+  }
+  & path {
+    transition: fill var(--transition-sm);
+    fill: var(--text-color-secondary);
+  }
+  &:hover svg {
+    transform: rotate(45deg);
+    & path {
+      fill: var(--text-color-main);
+    }
+  }
+  &:active svg {
+    transform: rotate(180deg);
+  }
+}
+@media (max-width: 1023px) {
+  #goToSettings {
+    display: none;
+  }
+}

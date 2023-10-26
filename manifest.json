@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Start.js",
+  "description": "A cool new start page for you",
+  "version": "0.1",
+  "chrome_url_overrides": {
+    "newtab": "index.html",
+    "homepage": "index.html"
+  },
+
+  "options_page": "options.html",
+
+  "permissions": ["storage"],
+  "optional_permissions": ["history"]
+}

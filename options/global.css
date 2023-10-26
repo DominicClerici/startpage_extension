@@ -1,0 +1,50 @@
+.iconButton {
+  background-color: transparent;
+  padding: 0.4rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.secondButton {
+  background-color: transparent;
+  color: var(--color-highlight);
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--color-highlight);
+  outline: none;
+  font-family: "poppins", sans-serif;
+  font-size: 2.2rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: calc(0.75em - 2px) calc(2em - 2px);
+  cursor: pointer;
+  gap: 1em;
+  transition: filter 0.1s, scale 0.1s;
+  margin-block: 2rem;
+  & p {
+    margin: 0;
+  }
+  & svg {
+    height: 1em;
+    width: 1em;
+    transition: translate 0.15s;
+    stroke: var(--text-color-main);
+  }
+  &:hover {
+    filter: brightness(1.4);
+    & svg {
+      translate: 0.5em 0;
+    }
+  }
+  &:active {
+    scale: 0.98;
+  }
+}
+p,
+hr,
+h2,
+span,
+body {
+  transition: color 0.5s, background-color 0.5s, border-color 0.5s;
+}

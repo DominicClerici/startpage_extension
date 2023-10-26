@@ -1,0 +1,198 @@
+@keyframes transFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.specialAnim1 {
+  animation: transFadeIn 1s 0.3s backwards;
+}
+.specialAnim2 {
+  animation: transFadeIn 1s 1.3s backwards;
+}
+
+#newUserFormCont {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-block: 15vh;
+  transition: opacity 1s;
+
+  & > *:not(#nextButton):not(.specialAnim1):not(.specialAnim2) {
+    animation: transFadeIn 0.5s;
+  }
+  &.transitioning > * {
+    transition-duration: 0.5s;
+    opacity: 0 !important;
+  }
+
+  & .topSpace {
+    margin-top: 2rem;
+  }
+
+  & h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2em;
+    font-weight: 500;
+    font-size: var(--font-size-xlarge);
+    color: var(--text-color-main);
+    /* ? for sublabel */
+    & span {
+      position: relative;
+      top: -1em;
+      font-size: var(--font-size-med);
+      color: var(--text-color-accent);
+    }
+    & span:nth-of-type(2) {
+      top: -2.5em;
+    }
+  }
+
+  & h2 {
+    margin-top: 0;
+    font-weight: 400;
+    font-size: var(--font-size-med);
+    color: var(--text-color-accent);
+  }
+
+  & input[type="text"] {
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    color: var(--text-color-secondary);
+    outline: 0;
+    border-radius: 0.6rem;
+    font-size: var(--font-size-large);
+    padding: 0.6rem;
+    transition: background-color 0.13s, border 0.13s, color 0.13s, opacity 0.5s;
+    font-family: "poppins", sans-serif;
+    font-weight: 600;
+    &:hover {
+      border: 2px solid var(--text-color-secondary);
+    }
+    &:focus {
+      color: var(--text-color-main);
+      border: 2px solid var(--text-color-main);
+    }
+  }
+  & .multipleOptions {
+    margin-top: auto;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    &:has(#nextButton) .secondButton {
+      transition: left var(--transition-l) ease-out, filter var(--transition-sm), scale var(--transition-sm);
+      position: relative;
+      left: 25%;
+    }
+    &:has(#nextButton.active) .secondButton {
+      left: 0%;
+    }
+  }
+  & .orDiv {
+    font-size: var(--font-size-xs);
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+  & .inputWLabel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    & p {
+      position: absolute;
+      color: var(--text-color-secondary);
+      font-size: var(--font-size-xs);
+      top: -2.5em;
+      left: 0.5em;
+    }
+  }
+}
+
+#nextButton {
+  margin-top: auto;
+  opacity: 00;
+  pointer-events: none;
+  transition: opacity var(--transition-m);
+  &.active {
+    transition: opacity var(--transition-xl);
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+#skipBtn {
+  position: fixed;
+  bottom: 5vh;
+  left: 5vh;
+  z-index: 15;
+  font-size: var(--font-size-xs);
+}
+.canBeDisabled.disabled {
+  transition: opacity var(--transition-m);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+#currentSelectedLocation {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--text-color-accent);
+  font-size: var(--font-size-sm);
+  transition: opacity var(--transition-l);
+  opacity: 1;
+  &:empty {
+    opacity: 0;
+  }
+}
+
+@keyframes loadText {
+  0% {
+    color: var(--text-color-main);
+  }
+  50% {
+    color: var(--text-color-accent);
+  }
+  100% {
+    color: var(--text-color-main);
+  }
+}
+
+#locationResults {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  & .LoadingText {
+    position: relative;
+    top: 0;
+    left: 0;
+    animation: loadText 1s infinite;
+    font-size: 2rem;
+    text-align: center;
+  }
+  & li {
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    color: white;
+    padding: 0.5rem;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
